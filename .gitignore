@@ -3,4 +3,3 @@ out
 media
 *.vsix
 .DS_Store
-package-lock.json

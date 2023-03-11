@@ -64,13 +64,13 @@
 		"eslint": "^7.6.0",
 		"eslint-plugin-react": "^7.30.0",
 		"glob": "^7.1.6",
-		"mocha": "^8.0.1",
+		"mocha": "^10.2.0",
 		"pegjs": "^0.10.0",
 		"rimraf": "^3.0.2",
 		"simplepeg": "1.2.0",
 		"ssh2": "^1.11.0",
 		"typescript": "^3.8.3",
-		"vsce": "1.78.0",
+		"vsce": "^2.15.0",
 		"vscode-nls": "5.2.0"
 	},
 	"main": "./out/extension",
@@ -225,15 +225,15 @@
 								"description": "Set the charset of a string variable on display.  e.g. utf-8.",
 								"default": ""
 							},
-							"language":{
-								"type":"string",
+							"language": {
+								"type": "string",
 								"enum": [
 									"auto",
 									"c++",
 									"pascal"
 								],
-								"description":"The development language of for debug. e.g. c++ pascal ...",
-								"default":"auto"
+								"description": "The development language of for debug. e.g. c++ pascal ...",
+								"default": "auto"
 							},
 							"remote": {
 								"required": [
