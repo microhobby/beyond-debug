@@ -41,13 +41,7 @@ export function activate(context: vscode.ExtensionContext) {
 	util.setExtensionContext(context);
 	// register a configuration provider for 'hi-gdb' debug type
 	const provider = new HiDebugConfigurationProvider();
-	context.subscriptions.push(vscode.debug.registerDebugConfigurationProvider('by-gdb', provider));
-
-	
-	context.subscriptions.push(
-		vscode.commands.registerTextEditorCommand('bydebug.ViewMemory',memview.cmdViewMemoryWithHexEdit)
-	);
-
+	context.subscriptions.push(vscode.debug.registerDebugConfigurationProvider('kgdb', provider));
 
 	// debug adapters can be run in different ways by using a vscode.DebugAdapterDescriptorFactory:
 	let factory: vscode.DebugAdapterDescriptorFactory;
@@ -64,7 +58,7 @@ export function activate(context: vscode.ExtensionContext) {
 			break;
 	}
 
-	context.subscriptions.push(vscode.debug.registerDebugAdapterDescriptorFactory('by-gdb', factory));
+	context.subscriptions.push(vscode.debug.registerDebugAdapterDescriptorFactory('kgdb', factory));
 	// if ('dispose' in factory) {
 	// 	context.subscriptions.push(factory);
 	// }
@@ -87,7 +81,7 @@ class HiDebugConfigurationProvider implements vscode.DebugConfigurationProvider 
 		if (!config.type && !config.request && !config.name) {
 			const editor = vscode.window.activeTextEditor;
 			if (editor) {
-				config.type = 'by-gdb';
+				config.type = 'kgdb';
 				config.name = 'Launch(gdb)';
 				config.request = 'launch';
 				config.program = '${fileBasenameNoExtension}';

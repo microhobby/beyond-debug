@@ -207,12 +207,12 @@ function extractThreadFrameInfo(data: any): IThreadFrameInfo {
  */
 export function extractThreadInfo(data: any): IThreadInfo {
   return {
-    id: parseInt(data.id, 10),
-    targetId: data['target-id'],
-    name: data.name,
-    frame: extractThreadFrameInfo(data.frame),
-    isStopped: (data.state === 'stopped') ? true : ((data.state === 'running') ? false : undefined),
-    processorCore: data.core,
-    details: data.details
+    id: parseInt(data, 10),
+    targetId: "",
+    name: "",
+    frame: null,
+    isStopped: undefined,
+    processorCore: "",
+    details: ""
   };
 }

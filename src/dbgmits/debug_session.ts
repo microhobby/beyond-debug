@@ -20,7 +20,7 @@ import {
   extractAsmBySourceLine, extractThreadInfo
 } from './extractors';
 import { CommandFailedError, MalformedResponseError } from './errors';
-import { Logger } from 'vscode-debugadapter/lib/logger';
+import { Logger } from '@vscode/debugadapter/lib/logger';
 
 // aliases
 type ReadLine = readline.ReadLine;
@@ -1549,12 +1549,14 @@ export default class DebugSession extends events.EventEmitter {
    * @returns A promise that will be resolved with information about all threads.
    */
   getThreads(): Promise<IMultiThreadInfo> {
-    let fullCmd = 'thread-info';
+    let fullCmd = 'thread-list-ids';
     return this.getCommandOutput(fullCmd, null, (output: any) => {
       let currentThreadId: number = parseInt(output['current-thread-id'], 10);
-      if (Array.isArray(output.threads)) {
+      if (Array.isArray(output["thread-ids"])) {
+
+      } else if (Array.isArray(output["thread-ids"]["thread-id"])) {
         let currentThread: IThreadInfo;
-        let threads: IThreadInfo[] = output.threads.map((data: any) => {
+        let threads: IThreadInfo[] = output["thread-ids"]["thread-id"].map((data: any) => {
           let thread: IThreadInfo = extractThreadInfo(data);
           if (thread.id === currentThreadId) {
             currentThread = thread;

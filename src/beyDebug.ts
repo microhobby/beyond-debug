@@ -304,14 +304,14 @@ export class BeyDebug extends DebugSession {
 		// make VS Code provide "Step in Target" functionality
 		response.body.supportsStepInTargetsRequest = false;
 
-		response.body.supportsTerminateThreadsRequest = true;
+		response.body.supportsTerminateThreadsRequest = false;
 
 		
 		response.body.supportsSetVariable=true;
 		response.body.supportsSetExpression=true;
 		response.body.supportsClipboardContext=true;
 		
-		response.body.supportsReadMemoryRequest = true;
+		response.body.supportsReadMemoryRequest = false;
 		//todo
 		response.body.supportsExceptionInfoRequest=false;
 
