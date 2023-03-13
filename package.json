@@ -1,28 +1,27 @@
 {
-	"name": "beyond-debug",
-	"displayName": "GDB Debugger - Beyond",
-	"version": "0.9.14",
-	"publisher": "coolchyni",
-	"description": "Debugger with gdb for c,c++,freepascal,fortran and more.",
+	"name": "kgdb-debug",
+	"displayName": "KGDB Debugger",
+	"version": "0.0.3",
+	"publisher": "microhobby",
+	"description": "Debugger with minimal options for GDB work better with KGDB",
 	"author": {
-		"name": "coolchyni",
-		"email": "coolchyni@gmail.com"
+		"name": "Matheus Castello",
+		"email": "matheus@castello.eng.br"
 	},
 	"license": "MIT",
 	"keywords": [
-		"beyond",
 		"debug",
 		"gdb",
-		"c++",
-		"cpp",
-		"pascal",
-		"fpc",
-		"debugger"
+		"c",
+		"kgdb",
+		"debugger",
+		"kernel",
+		"linux"
 	],
 	"engines": {
 		"vscode": "^1.65.0"
 	},
-	"icon": "assets/beyond-debug.png",
+	"icon": "assets/kgdb.png",
 	"categories": [
 		"Debuggers",
 		"Programming Languages"
@@ -30,7 +29,7 @@
 	"private": true,
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/coolchyni/beyond-debug"
+		"url": "https://github.com/microhobby/beyond-debug"
 	},
 	"scripts": {
 		"compile": "tsc -p ./",
@@ -46,6 +45,8 @@
 	},
 	"dependencies": {
 		"@vscode/debugadapter": "1.57.0",
+		"@vscode/debugadapter-testsupport": "1.57.0",
+		"@vscode/debugprotocol": "1.57.0",
 		"await-notify": "1.0.1",
 		"iconv-lite": "0.6.2",
 		"pegjs-require-import": "^0.0.6"
@@ -69,7 +70,7 @@
 		"rimraf": "^3.0.2",
 		"simplepeg": "1.2.0",
 		"ssh2": "^1.11.0",
-		"typescript": "^3.8.3",
+		"typescript": "^4.4.4",
 		"vsce": "^2.15.0",
 		"vscode-nls": "5.2.0"
 	},
@@ -78,90 +79,14 @@
 		"onDebug"
 	],
 	"contributes": {
-		"commands": [
-			{
-				"title": "View Memory",
-				"command": "bydebug.ViewMemory",
-				"icon": "$(symbol-parameter)",
-				"category": "byeond"
-			}
-		],
-		"menus": {
-			"editor/context": [
-				{
-					"command": "bydebug.ViewMemory",
-					"when": "inDebugMode&&debugType==by-gdb"
-				}
-			]
-		},
 		"breakpoints": [
 			{
 				"language": "c"
-			},
-			{
-				"language": "c++"
-			},
-			{
-				"language": "cpp"
-			},
-			{
-				"language": "d"
-			},
-			{
-				"language": "objective-c"
-			},
-			{
-				"language": "fortran"
-			},
-			{
-				"language": "fortran-modern"
-			},
-			{
-				"language": "fortran90"
-			},
-			{
-				"language": "fortran_free-form"
-			},
-			{
-				"language": "fortran_fixed-form"
-			},
-			{
-				"language": "rust"
-			},
-			{
-				"language": "pascal"
-			},
-			{
-				"language": "objectpascal"
-			},
-			{
-				"language": "ada"
-			},
-			{
-				"language": "nim"
-			},
-			{
-				"language": "arm"
-			},
-			{
-				"language": "asm"
-			},
-			{
-				"language": "vala"
-			},
-			{
-				"language": "crystal"
-			},
-			{
-				"language": "kotlin"
-			},
-			{
-				"language": "zig"
 			}
 		],
 		"debuggers": [
 			{
-				"type": "by-gdb",
+				"type": "kgdb",
 				"label": "GDB(Beyond)",
 				"program": "./out/debugAdapter.js",
 				"runtime": "node",
@@ -401,7 +326,7 @@
 				},
 				"initialConfigurations": [
 					{
-						"type": "by-gdb",
+						"type": "kgdb",
 						"request": "launch",
 						"name": "Launch(gdb)",
 						"program": "${fileBasenameNoExtension}",
@@ -413,7 +338,7 @@
 						"label": "GDB(Beyond): Launch a program",
 						"description": "A new configuration for 'debugging'.",
 						"body": {
-							"type": "by-gdb",
+							"type": "kgdb",
 							"request": "launch",
 							"name": "Launch(gdb)",
 							"program": "^\"\\${fileBasenameNoExtension}\"",
@@ -424,7 +349,7 @@
 						"label": "GDB(Beyond): Attach to process",
 						"description": "A new configuration for 'debugging' to attach to process.",
 						"body": {
-							"type": "by-gdb",
+							"type": "kgdb",
 							"request": "attach",
 							"name": "Attach(gdb)",
 							"program": "^\"\\${fileBasenameNoExtension}\"",
@@ -436,7 +361,7 @@
 						"label": "GDB(Beyond): Connect to gdbserver",
 						"description": "A new configuration for 'debugging' use gdbserver.",
 						"body": {
-							"type": "by-gdb",
+							"type": "kgdb",
 							"request": "launch",
 							"name": "Launch(remote)",
 							"program": "^\"\\${fileBasenameNoExtension}\"",
@@ -453,7 +378,7 @@
 						"label": "GDB(Beyond): Through SSH",
 						"description": "A new configuration for 'debugging' through ssh.",
 						"body": {
-							"type": "by-gdb",
+							"type": "kgdb",
 							"request": "launch",
 							"name": "Launch(SSH)",
 							"program": "Input program path on remote.",
